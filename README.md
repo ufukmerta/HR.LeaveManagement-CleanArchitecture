@@ -31,7 +31,7 @@ Together with **CQRS** and **MediatR**, this style keeps application features or
 | Layer | Role |
 |-------|------|
 | **Domain** | Entities and shared domain primitives (e.g. leave types, allocations, requests) |
-| **Application** | Use cases: **CQRS** with **MediatR**, **AutoMapper** profiles, DTOs, and **persistence contracts** (repository interfaces) |
+| **Application** | Use cases: **CQRS** with **MediatR**, **AutoMapper** profiles, DTO interfaces + DTOs, **FluentValidation** validators, and **persistence contracts** (repository interfaces) |
 
 **Target framework:** .NET 10 (`net10.0`).
 

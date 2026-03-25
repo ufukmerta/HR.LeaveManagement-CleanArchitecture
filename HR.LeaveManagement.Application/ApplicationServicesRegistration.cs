@@ -1,8 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
+using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using System.Text;
 
 namespace HR.LeaveManagement.Application
 {
@@ -12,6 +10,7 @@ namespace HR.LeaveManagement.Application
         {
             services.AddAutoMapper(cfg => cfg.AllowNullCollections = true, Assembly.GetExecutingAssembly());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             return services;
         }

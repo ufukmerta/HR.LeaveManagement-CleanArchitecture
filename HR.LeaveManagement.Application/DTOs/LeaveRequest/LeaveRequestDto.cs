@@ -9,7 +9,7 @@ namespace HR.LeaveManagement.Application.DTOs.LeaveRequest
     public class LeaveRequestDto : BaseDto
     {
         public DateTime StartDate { get; set; }
-        public int EndDate { get; set; }
+        public DateTime EndDate { get; set; }
         public LeaveTypeDto LeaveType { get; set; } = null!;
         public int LeaveTypeId { get; set; }
         public DateTime DateRequested { get; set; }
