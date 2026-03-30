@@ -31,7 +31,9 @@ Together with **CQRS** and **MediatR**, this style keeps application features or
 | Layer | Role |
 |-------|------|
 | **Domain** | Entities and shared domain primitives (e.g. leave types, allocations, requests) |
-| **Application** | Use cases: **CQRS** with **MediatR**, **AutoMapper** profiles, DTO interfaces + DTOs, **FluentValidation** validators, and **persistence contracts** (repository interfaces) |
+| **Application** | Use cases: **CQRS** with **MediatR**, **AutoMapper** profiles, DTO interfaces + DTOs, **FluentValidation** validators, shared command responses/exceptions, email contracts, and application-level contracts (repository interfaces) |
+| **Persistence** | EF Core `DbContext` and repository implementations for leave types, allocations, and requests (e.g. generic + specific repositories) |
+| **Infrastructure** | Integrations such as email sending (`EmailSender`) and the service registration wiring for external concerns |
 
 **Target framework:** .NET 10 (`net10.0`).
 
