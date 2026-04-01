@@ -27,12 +27,18 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
                 if (validationResult.IsValid is false)
                     return BaseCommandResponse.Fail([.. validationResult.Errors.Select(e => e.ErrorMessage)], "Leave request update failed.");
 
+                if (request.Id != request.UpdateLeaveRequestDto.Id)
+                    return BaseCommandResponse.Fail("Leave request ID mismatch.", "Leave request update failed.");
+
                 mapper.Map(request.UpdateLeaveRequestDto, leaveRequest);
 
                 await leaveRequestRepository.UpdateAsync(leaveRequest);
             }
             else if (request.ChangeLeaveRequestApprovalDto is not null)
             {
+                if (request.Id != request.ChangeLeaveRequestApprovalDto.Id)
+                    return BaseCommandResponse.Fail("Leave request ID mismatch.", "Leave request approval update failed.");
+
                 await leaveRequestRepository.ChangeApprovalStatusAsync(leaveRequest, request.ChangeLeaveRequestApprovalDto.Approved);
             }
 

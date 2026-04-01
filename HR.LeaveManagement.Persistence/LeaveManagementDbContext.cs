@@ -7,26 +7,11 @@ using System.Text;
 
 namespace HR.LeaveManagement.Persistence
 {
-    public class LeaveManagementDbContext(DbContextOptions<LeaveManagementDbContext> options) : DbContext(options)
+    public class LeaveManagementDbContext(DbContextOptions<LeaveManagementDbContext> options) : AuditableDbContext(options)
     {
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(LeaveManagementDbContext).Assembly);
-        }
-
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        {
-            foreach (var entry in ChangeTracker.Entries<BaseDomainEntity>())
-            {
-                entry.Entity.DateModified = DateTime.Now;
-
-                if (entry.State == EntityState.Added)
-                {
-                    entry.Entity.DateCreated = DateTime.Now;
-                }
-            }
-
-            return base.SaveChangesAsync(cancellationToken);
         }
 
         public DbSet<LeaveAllocation> LeaveAllocations { get; set; }

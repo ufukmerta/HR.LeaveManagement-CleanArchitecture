@@ -29,7 +29,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveTypes.Handlers.Commands
 
             await leaveTypeRepository.UpdateAsync(leaveType);
 
-            return BaseCommandResponse.Success(leaveType.Id, "Leave type updated successfully.");
+            return BaseCommandResponse.Success("Leave type updated successfully.");
         }
     }
 }

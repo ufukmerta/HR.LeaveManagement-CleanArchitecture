@@ -32,8 +32,9 @@ Together with **CQRS** and **MediatR**, this style keeps application features or
 |-------|------|
 | **Domain** | Entities and shared domain primitives (e.g. leave types, allocations, requests) |
 | **Application** | Use cases: **CQRS** with **MediatR**, **AutoMapper** profiles, DTO interfaces + DTOs, **FluentValidation** validators, shared command responses/exceptions, email contracts, and application-level contracts (repository interfaces) |
-| **Persistence** | EF Core `DbContext` and repository implementations for leave types, allocations, and requests (e.g. generic + specific repositories) |
+| **Persistence** | EF Core `DbContext` + `AuditableDbContext`, SQL Server registration, repository implementations, and EF migrations |
 | **Infrastructure** | Integrations such as email sending (`EmailSender`) and the service registration wiring for external concerns |
+| **API** | ASP.NET Core Web API host with controllers, OpenAPI/Swagger UI, CORS policy, and kebab-case route token transformation |
 
 **Target framework:** .NET 10 (`net10.0`).
 
@@ -45,6 +46,17 @@ From the repository root:
 
 ```bash
 dotnet build
+```
+
+---
+
+## Entity Framework migrations
+
+From the repository root:
+
+```bash
+dotnet ef migrations add InitialCreate --project HR.LeaveManagement.Persistence --startup-project HR.LeaveManagement.API --context LeaveManagementDbContext --output-dir Migrations
+dotnet ef database update --project HR.LeaveManagement.Persistence --startup-project HR.LeaveManagement.API --context LeaveManagementDbContext
 ```
 
 ---

@@ -29,7 +29,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllocations.Handlers.Comm
 
             await leaveAllocationRepository.UpdateAsync(leaveAllocation);
 
-            return BaseCommandResponse.Success(request.LeaveAllocationDto.Id, "Leave Allocation updated successfully.");
+            return BaseCommandResponse.Success("Leave Allocation updated successfully.");
         }
     }
 }
